@@ -86,12 +86,12 @@ function! s:RestoreWindowState()
     let currWinId = win_getid()
     let winFileName = expand('%:p')
 
-    if has_key(s:MruFileWinId, winFileName) && !has_key(s:WinPositions, currWinId)
+    if has_key(s:MruFileWinId, winFileName) && !has_key(s:WindowsState, currWinId)
       " Get existing scrolled position from open window
       let existingWinId = s:MruFileWinId[winFileName]
       "" TODO: Maybe we should make sure this window still exists
 
-      if has_key(s:WinPositions, existingWinId)
+      if has_key(s:WindowsState, existingWinId)
         
         let topWinLine = s:WindowsState[existingWinId][0]
         execute 'normal! gg'
