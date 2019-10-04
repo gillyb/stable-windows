@@ -16,34 +16,42 @@ behave like this:
 
 ## Installation
 
-* VimPlug
-  Place this in your .vimrc:
+* VimPlug  
+  Place this in your .vimrc:  
   `Plug gillyb/stable-windows`
 
-  And then open vim and run:
-  `:source %`
-  `:PlugInstall`
+  And then open vim and run:  
+  ```bash
+  :source %
+  :PlugInstall
+  ```
 
-* Vundle
-  Place this in your .vimrc:
+* Vundle  
+  Place this in your .vimrc:  
   `Plugin gillyb/stable-windows`
 
-  And then open vim and run:
-  `:source %`
-  `:PlugInstall`
+  And then open vim and run:  
+  ```bash
+  :source %
+  :PlugInstall
+  ```
 
-* NeoBundle
-  Place this in your .vimrc:
+* NeoBundle  
+  Place this in your .vimrc:  
   `NeoBundle gillyb/stable-windows`
 
-  And then open vim and run:
-  `:source %`
-  `:NeoBundleInstall`
+  And then open vim and run:  
+  ```bash
+  :source %
+  :NeoBundleInstall
+  ```
 
-* Pathogen
-  Run the following in a terminal:
-  `cd ~/.vim/bundle`
-  `git clone https://github.com/gillyb/stable-windows`
+* Pathogen  
+  Run the following in a terminal:  
+  ```bash
+  cd ~/.vim/bundle
+  git clone https://github.com/gillyb/stable-windows
+  ```
 
 
 ## Usage
