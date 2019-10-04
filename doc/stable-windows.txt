@@ -1,0 +1,118 @@
+*stable-windows* Functionality of the stable-windows plugin
+
+  Keeps your vim windows stable when they move around.
+  This is especially useful when working a lot with quickfix
+  windows or location lists, vim tends to 'scroll' the text
+  in your open windows to keep the cursor line centered.
+
+====================================================================
+CONTENTS                                       *StableWindowsContents*
+
+    1. Usage ................ |Usage|
+    2. License .............. |License|
+    3. Bugs ................. |Bugs|
+    4. Contributing ......... |Contributing|
+    5. Changelog ............ |Changelog|
+    7. Credits .............. |Credits|
+
+====================================================================
+Section 1: Usage                                               *Usage*
+
+All you need to do is install this plugin for it to work. It
+automatically saves the state of your open vim windows and will
+restore the state when anything changes automatically, so you 
+shouldn't feel any scrolling movement.
+
+This plugin doesn't provide any mappings or commands for you to map.
+You just install it to enable it, or remove it to disable.
+
+
+Installing:
+
+* VimPlug
+  Place this in your .vimrc:
+  `Plug gillyb/stable-windows`
+
+  And then open vim and run:
+  `:source %`
+  `:PlugInstall`
+
+* Vundle
+  Place this in your .vimrc:
+  `Plugin gillyb/stable-windows`
+
+  And then open vim and run:
+  `:source %`
+  `:PlugInstall`
+
+* NeoBundle
+  Place this in your .vimrc:
+  `NeoBundle gillyb/stable-windows`
+
+  And then open vim and run:
+  `:source %`
+  `:NeoBundleInstall`
+
+* Pathogen
+  Run the following in a terminal:
+  `cd ~/.vim/bundle`
+  `git clone https://github.com/gillyb/stable-windows`
+
+
+====================================================================
+Section 2: License                                           *License*
+
+The "stable-windows" vim plugin is distributed under the MIT 
+license. Here is the full license:
+
+Copyright 2019 Gilly Barr
+
+Permission is hereby granted, free of charge, to any person 
+obtaining a copy of this software and associated documentation files 
+(the "Software"), to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, 
+publish, distribute, sublicense, and/or sell copies of the Software, 
+and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be 
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN 
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+
+
+====================================================================
+Section 3: Bugs                                                 *Bugs*
+
+Currently there aren't any known bugs.
+Feel free to open issues on github, I will try to address them
+appropriately. Please be respectful.
+
+
+====================================================================
+Section 4: Contributing                                 *Contributing*
+
+You can contribute by opening an issue or sending a pull request.
+I will try to address all contributions appropriately. All I ask is
+that you be kind and respectful in doing so.
+
+  
+====================================================================
+Section 5: Changelog                                       *Changelog*
+
+* 1.0.0 - This is the initial version
+
+
+====================================================================
+Section 6: Credits                                           *Credits*
+
+Currently, I (Gilly Barr) am the only author, maintainer and
+contributor to this plugin, although I will keep this section here
+for future use, if anyone decides to contribute as well.
