@@ -24,6 +24,11 @@ let s:MruFileWinId = {}
 " Triggered on 'autocmd BufEnter' - When a new file was open
 " We add the new window id to the MruFileWinId list
 function! s:AddFileToList()
+  let winInfo = getwininfo(win_getid())
+  if winInfo['quickfix'] == 1
+    return
+  endif 
+
   let newFile = expand('%:p')
   if newFile != ''
     let newFileWinId = win_getid()
@@ -64,6 +69,11 @@ endfunction
 " in the format: s:WindowsState[<window id>] = [<top visible line number>,
 " <current cursor line>]
 function! s:SaveWindowState()
+  let winInfo = getwininfo(win_getid())
+  if winInfo['quickfix'] == 1
+    return
+  endif
+
   set ei=all
   try
     let winId = win_getid()
