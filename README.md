@@ -2,6 +2,18 @@
 
 Keeps vim windows stable when layout changes.
 
+It really annoys me when opening new windows in vim (especially
+using the quickfix or location list) and vim automatically
+adjusts the text in all the windows so the cursor line is 
+centered.
+
+This is what I'm talking about:  
+![Unstable vim windows](https://github.com/gillyb/stable-windows/raw/master/misc/not-stable.gif)
+
+And after using the 'stable-windows' plugin, your vim will
+behave like this:
+![Stable vim windows](https://github.com/gillyb/stable-windows/raw/master/misc/stable.gif)
+
 ## Installation
 
 * VimPlug
