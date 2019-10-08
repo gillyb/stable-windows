@@ -24,10 +24,10 @@ let s:MruFileWinId = {}
 " Triggered on 'autocmd BufEnter' - When a new file was open
 " We add the new window id to the MruFileWinId list
 function! s:AddFileToList()
-  let winInfo = getwininfo(win_getid())
+  let winInfo = getwininfo(win_getid())[0]
   if winInfo['quickfix'] == 1
     return
-  endif 
+  endif
 
   let newFile = expand('%:p')
   if newFile != ''
@@ -69,7 +69,7 @@ endfunction
 " in the format: s:WindowsState[<window id>] = [<top visible line number>,
 " <current cursor line>]
 function! s:SaveWindowState()
-  let winInfo = getwininfo(win_getid())
+  let winInfo = getwininfo(win_getid())[0]
   if winInfo['quickfix'] == 1
     return
   endif
@@ -102,7 +102,7 @@ function! s:RestoreWindowState()
       "" TODO: Maybe we should make sure this window still exists
 
       if has_key(s:WindowsState, existingWinId)
-        
+
         let topWinLine = s:WindowsState[existingWinId][0]
         execute 'normal! gg'
         if topWinLine >= &scrolloff + 1
