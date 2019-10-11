@@ -52,15 +52,17 @@ endfunction
 " Triggered on 'autocmd WinLeave'
 " Remove from the state object window ids that aren't displayed anymore
 function! s:RemoveFileListBadEntries()
-  let winNumbers = range(1, winnr('$'))
-  for winNum in winNumbers
-    let winId = win_getid(winNum)
-    if winId != 0
-      if win_gotoid(winId) == 0
-        unlet s:WindowsState[winId]
+  if !exists('s:WindowsState')
+    let winNumbers = range(1, winnr('$'))
+    for winNum in winNumbers
+      let winId = win_getid(winNum)
+      if winId != 0 && has_key(s:WindowsState, winId)
+        if win_gotoid(winId) == 0
+          unlet s:WindowsState[winId]
+        endif
       endif
-    endif
-  endfor
+    endfor
+  endif
 endfunction
 
 " Triggered on 'autocmd CursorMoved,CursorMovedI' - Basically whenever the
