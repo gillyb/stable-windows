@@ -84,7 +84,7 @@ function! s:SaveWindowState()
     endif
 
   finally
-    set ei=prev_ei
+    let &ei=prev_ei
   endtry
 endfunction
 
@@ -155,7 +155,7 @@ function! s:RestoreWindowState()
     endif
 
   finally
-    set ei=prev_ei
+    let &ei=prev_ei
   endtry
 endfunction
 
