@@ -74,6 +74,7 @@ function! s:SaveWindowState()
     return
   endif
 
+  let prev_ei = &ei  " Remember what the user defined as 'ei'
   set ei=all
   try
     let winId = win_getid()
@@ -83,7 +84,7 @@ function! s:SaveWindowState()
     endif
 
   finally
-    set ei=""
+    let &ei=prev_ei
   endtry
 endfunction
 
@@ -91,6 +92,7 @@ endfunction
 " Get the state of the opened windows and restore them so we wont see any
 " scroll moevement in the opened windows.
 function! s:RestoreWindowState()
+  set prev_ei = &ei  " Remember what the user defined as 'ei'
   set ei=all
   try
     let currWinId = win_getid()
@@ -153,7 +155,7 @@ function! s:RestoreWindowState()
     endif
 
   finally
-    set ei=""
+    let &ei=prev_ei
   endtry
 endfunction
 
