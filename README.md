@@ -8,11 +8,11 @@ adjusts the text in all the windows so the cursor line is
 centered.
 
 This is what I'm talking about:  
-![Unstable vim windows](https://github.com/gillyb/stable-windows/raw/master/misc/not-stable.gif)
+![Unstable vim windows](https://github.com/gillyb/assets/raw/master/stable-windows/not-stable.gif)
 
 And after using the 'stable-windows' plugin, your vim will
 behave like this:
-![Stable vim windows](https://github.com/gillyb/stable-windows/raw/master/misc/stable.gif)
+![Stable vim windows](https://github.com/gillyb/assets/raw/master/stable-windows/stable.gif)
 
 ## Installation
 
