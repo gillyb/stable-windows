@@ -90,6 +90,35 @@ function! s:SaveWindowState()
   endtry
 endfunction
 
+function! s:MoveCursorToSavedPosition(winId)
+  " Never move the cursor on quickfix/location-list/terminal windows
+  let winInfo = getwininfo(a:winId)[0]
+  if winInfo['quickfix'] == 1 || winInfo['loclist'] == 1 || winInfo['terminal'] == 1
+    return
+  endif
+
+  " Get the line number that was at the top of the screen
+  let topWinLine = s:WindowsState[a:winId][0]
+
+  " Go to that line number
+  execute 'normal! gg'
+  if topWinLine >= &scrolloff + 1
+    execute 'normal! '.(topWinLine + &scrolloff - 1).'jzt'
+  endif
+
+  " Move cursor to the last cursor position (or max position possible)
+  let currentCursorPosition = line('.')
+  let lastCursorPosition = s:WindowsState[a:winId][1]
+  if currentCursorPosition != lastCursorPosition
+    let lastSelectablePosition = line('w$') - &scrolloff
+    if lastCursorPosition > lastSelectablePosition
+      execute 'normal! '.(lastSelectablePosition - currentCursorPosition).'j'
+    else
+      execute 'normal! '.(lastCursorPosition - currentCursorPosition).'j'
+    endif
+  endif
+endfunction
+
 " Triggered on 'autocmd WinEnter'
 " Get the state of the opened windows and restore them so we wont see any
 " scroll moevement in the opened windows.
@@ -106,49 +135,13 @@ function! s:RestoreWindowState()
       "" TODO: Maybe we should make sure this window still exists
 
       if has_key(s:WindowsState, existingWinId)
-
-        let topWinLine = s:WindowsState[existingWinId][0]
-        execute 'normal! gg'
-        if topWinLine >= &scrolloff + 1
-          execute 'normal! '.(topWinLine + &scrolloff - 1).'jzt'
-        endif
-
-        " Move cursor to the last cursor position (or max position possible)
-        let currentCursorPosition = line('.')
-        let lastCursorPosition = s:WindowsState[existingWinId][1]
-        if currentCursorPosition != lastCursorPosition
-          let lastSelectablePosition = line('w$') - &scrolloff
-          if lastCursorPosition > lastSelectablePosition
-            execute 'normal! '.(lastSelectablePosition - currentCursorPosition).'j'
-          else
-            execute 'normal! '.(lastCursorPosition - currentCursorPosition).'j'
-          endif
-        endif
-
+        call s:MoveCursorToSavedPosition(existingWinId)
       endif
     endif
 
     for winId in keys(s:WindowsState)
       if win_gotoid(winId) == 1
-
-        let topWinLine = s:WindowsState[winId][0]
-        execute 'normal! gg'
-        if topWinLine >= &scrolloff + 1
-          execute 'normal! '.(topWinLine + &scrolloff - 1).'jzt'
-        endif
-
-        " Move cursor to the last cursor position (or max position possible)
-        let currentCursorPosition = line('.')
-        let lastCursorPosition = s:WindowsState[winId][1]
-        if currentCursorPosition != lastCursorPosition
-          let lastSelectablePosition = line('w$') - &scrolloff
-          if lastCursorPosition > lastSelectablePosition
-            execute 'normal! '.(lastSelectablePosition - currentCursorPosition).'j'
-          else
-            execute 'normal! '.(lastCursorPosition - currentCursorPosition).'j'
-          endif
-        endif
-
+        call s:MoveCursorToSavedPosition(winId)
       endif
     endfor
 
