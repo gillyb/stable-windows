@@ -24,8 +24,13 @@ let s:MruFileWinId = {}
 " Triggered on 'autocmd BufEnter' - When a new file was open
 " We add the new window id to the MruFileWinId list
 function! s:AddFileToList()
+  " Dont save files in our list if their just preview windows or list buffers
+  if &previewwindow || &ft == 'list'
+    return
+  endif
+
   let winInfo = getwininfo(win_getid())[0]
-  if winInfo['quickfix'] == 1
+  if winInfo['quickfix'] == 1 || winInfo['loclist'] == 1 || winInfo['terminal'] == 1
     return
   endif
 
@@ -71,8 +76,12 @@ endfunction
 " in the format: s:WindowsState[<window id>] = [<top visible line number>,
 " <current cursor line>]
 function! s:SaveWindowState()
+  if &previewwindow || &ft == 'list'
+    return
+  endif
+
   let winInfo = getwininfo(win_getid())[0]
-  if winInfo['quickfix'] == 1
+  if winInfo['quickfix'] == 1 || winInfo['loclist'] == 1 || winInfo['terminal'] == 1
     return
   endif
 
@@ -91,12 +100,6 @@ function! s:SaveWindowState()
 endfunction
 
 function! s:MoveCursorToSavedPosition(winId)
-  " Never move the cursor on quickfix/location-list/terminal windows
-  let winInfo = getwininfo(a:winId)[0]
-  if winInfo['quickfix'] == 1 || winInfo['loclist'] == 1 || winInfo['terminal'] == 1
-    return
-  endif
-
   " Get the line number that was at the top of the screen
   let topWinLine = s:WindowsState[a:winId][0]
 
@@ -141,7 +144,9 @@ function! s:RestoreWindowState()
 
     for winId in keys(s:WindowsState)
       if win_gotoid(winId) == 1
-        call s:MoveCursorToSavedPosition(winId)
+        if !&previewwindow && &ft != 'list'
+          call s:MoveCursorToSavedPosition(winId)
+        endif
       endif
     endfor
 
