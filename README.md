@@ -1,3 +1,11 @@
+# Not maintained anymore
+
+There are issues with this plugin, but I've decided that I'm not going to try to maintain it.  
+I also converted my nvim config to lua and am trying to use only lua based plugins.
+
+A good lua based plugin that solves this same problem, and even better: [stabilize.nvim](https://github.com/luukvbaal/stabilize.nvim)
+
+
 # stable-windows
 
 Keeps vim windows stable when layout changes.
