@@ -1,3 +1,9 @@
+# ❗ vim(9.0.0667) deprecates this plugin
+A new option is now available in both vim(9.0.0667) and neovim(0.9) that should replace this plugin.
+The new `'splitkeep'` option offers two new available behaviors.
+* `set splitkeep=screen` keeps the same screen screen lines in all split windows and is the most "stable" to me.
+* `set splitkeep=topline` keeps the same topline as an alternative.
+
 # Not maintained anymore
 
 There are issues with this plugin, but I've decided that I'm not going to try to maintain it.  
